@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int a, b;
+    cout << "Insert a: "; 
+    cin >> a;
+    cout << "Insert b: ";
+    cin >> b;
+    cout << "\na: " << a << endl;
+    cout << "b: " << b << endl;
+    a= a ^ b;
+    cout << "\na: " << a << endl;
+    cout << "b: " << b << endl;
+    b = a ^ b;
+    cout << "\na: " << a << endl;
+    cout << "b: " << b << endl;
+    a = a ^ b;
+    cout << "\na: " << a << endl; // вопрос к знатокам: почему xor не вызывает переполнение ячеек?
+    cout << "b: " << b;
+    return(0);
+}
