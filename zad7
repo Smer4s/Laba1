@@ -1,0 +1,87 @@
+#include <iostream>
+using namespace std;
+double storona(int x1,int y1,int x2, int y2)
+{
+    double stor;
+    stor = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+    return(stor);
+}
+double ugol(double A, double B, double C)
+{
+    double alp;
+    alp = acos((B * B + C * C - A * A) / 2 / B / C);
+    return(alp);
+}
+double vis(double A, double alp)
+{
+    return(A * sin(alp));
+}
+double med(double A, double B, double alp)
+{
+    return (0.5 * (sqrt(A * A + B * B + 2 * A * B * cos(alp))));
+}
+double bis(double A, double B, double alp)
+{
+    return(2 * A * B / (A + B) * cos(alp * 0.5));
+}
+double geron(double A, double B, double C)
+{
+    double p;
+    p = (A + B + C) * 0.5;
+    return(sqrt(p * (p - A) * (p - B) * (p - C)));
+}
+int main()
+{
+    long int x1, y1, x2, y2, x3, y3;
+    double A, B, C, S_ABC;
+    cout << "Enter A(x1,y1): ";
+    cin >> x1 >> y1;
+    cout << "Enter B(x2,y2): ";
+    cin >> x2 >> y2;
+    cout << "Enter C(x3,y3): ";
+    cin >> x3 >> y3;
+    A = storona(x1, y1, x2, y2);
+    B = storona(x2, y2, x3, y3);
+    C = storona(x1, y1, x3, y3);
+    if (A + B <= C or A + C <= B or B + C <= A)
+    {
+        cout << "This triangle does not exist.";
+        return(0);
+    }
+    cout << "\nAB=" << A << endl;
+    cout << "BC=" << B << endl;
+    cout << "AC=" << C << endl;
+
+    cout << "\nP=" << A+B+C << endl;
+
+    cout << "\n/ABC=" <<ugol(C,B,A)<<"(rad)="<< ugol(C, B,A) * 180 / acos(-1) << "(*)" << endl;
+    cout << "/BAC=" << ugol(B,A, C) << "(rad)=" << ugol(B,A,C) * 180 / acos(-1) << "(*)" << endl;
+    cout << "/ACB=" << ugol(A,B,C) << "(rad)=" << ugol(A,B,C) * 180 / acos(-1) << "(*)" << endl;
+
+    cout << "\nh1(B)=" << vis(A, ugol(B, A, C))<<endl;
+    cout << "h2(A)=" << vis(C, ugol(A,B,C))<<endl;
+    cout << "h3(C)=" << vis(C, ugol(C,B,A))<<endl;
+
+    cout << "\nm1(B)=" << med(A, B, ugol(C, B, A)) << endl;
+    cout << "m2(A)=" << med(A, C, ugol(B,A,C)) << endl;
+    cout << "m3(C)=" << med(C, B, ugol(A, B, C)) << endl;
+
+    cout << "\nb1(B)=" << bis(A, B, ugol(C, B, A)) << endl;
+    cout << "b2(A)=" << bis(A, C, ugol(B, A, C)) << endl;
+    cout << "b3(C)=" << bis(C, B, ugol(A, B, C)) << endl;
+
+    cout << "\nR=" << 0.5 * A / sin(ugol(A, B, C)) << endl;
+    cout << "S(R)=" << pow(0.5 * A / sin(ugol(A, B, C)), 2) * acos(-1) << endl;
+    cout << "L(R)=" << A / sin(ugol(A, B, C)) * acos(-1) << endl;
+
+    S_ABC = vis(A, ugol(B, A, C)) * 0.5 * C;
+    cout << "\nr=" << S_ABC * 2 / (A + B + C)<<endl;
+    cout << "S(r)=" << pow(S_ABC * 2 / (A + B + C), 2) * acos(-1)<<endl;
+    cout << "L(r)=" << S_ABC * 4 / (A + B + C) * acos(-1) << endl;
+
+    cout << "\nS1(ABC)=" << S_ABC<<endl;
+    S_ABC = A * B * sin(ugol(C, B, A))*0.5;
+    cout << "S2(ABC)=" << S_ABC << endl;
+    cout << "S3(ABC)=" << geron(A, B, C);
+    return(0);
+}
