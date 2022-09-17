@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int h1, h2, min1, min2, H2, dH;
+	cout << "Insert h1: ";
+	cin >> h1;
+	cout << "Insert min1: ";
+	cin >> min1;
+	cout << "Insert h2: ";
+	cin >> h2;
+	cout << "Insert min2: ";
+	cin >> min2;
+	if (h1 > 24 || min2 > 59 || h2>24 || min1>59)
+	{
+		cout << "Time error";
+		return(0);
+	}
+	else
+		if (h1 <= h2 && min1<=min2)
+		{
+			H2 = h2 * 60 + min2;
+			H2 = H2 - (h1 * 60 + min1);
+			dH = H2 / 60;
+			if (dH<1)
+			{
+				cout << "Student spent: " << H2 << " min" << endl;
+			}
+			else
+			{
+				H2 = H2 - dH * 60;
+				cout << "Student spent " << dH << " h and " << H2<<" min";
+			}
+	}
+	else
+	{
+		cout << "Time error";
+	}
+	return(0);
+}
