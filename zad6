@@ -1,0 +1,137 @@
+#include<cmath>
+#include <iostream>
+using namespace std;
+
+double v1(double x, double D)
+{
+    double S, A, b;
+    b = x + D;
+    A = D * x / b;
+    S = (A * A + b * cos(x)) / (D * D * D + (A + D - b));
+    return(S);
+}
+double v2(double C, double D, double K, double p, double x)
+{
+    double Y, A, B;
+    A = x + sin(p);
+    B = exp(K);
+    Y = 1 + K * K / 2 / A / B - B + D * C;
+    return(Y);
+}
+
+double v3(double x, double p, double n, double K, double D)
+{
+    double B, C,Q;
+    B = cos(x);
+    C = p - n;
+    Q = B * B / K / D + B * pow(C, 3);
+    return(Q);
+}
+double v4(double x, double y, double z, double K, double C, double D)
+{
+    double A, T, B;
+    A = x - y;
+    B = sqrt(z);
+    T = cos(x) + A * A / (K - C * D) - B;
+    return(T);
+}
+double v5(double n, double m, double x, double K)
+{
+    double A, D, Y;
+    A = fabs(n + m);
+    D = tan(x);
+    Y = 1.29 + K / A + D * D;
+    return(Y);
+}
+double v6(double x, double y, double C, double K)
+{
+    double A, D, S;
+    A = x + y;
+    D = fabs(C - A);
+    S = 10.1 + A / C + D / K / K;
+    return(S);
+}
+double v7(double x, double p, double h, double K, double C, double D)
+{
+    double A, B, Y;
+    A = x - p;
+    B = log(h);
+    Y = 0.78 * B + A * A * A / K / C / D;
+    return(Y);
+}
+double v8(double x, double d, double C, double K)
+{
+    double A, B, Y;
+    A = log(x);
+    B = x + exp(d);
+    Y = A + B - C * C / K;
+    return(Y);
+}
+double v9(double x, double z, double p, double K, double C, double D)
+{
+    double A, B, Y;
+    A = sin(x) - z;
+    B = fabs(p - x);
+    Y = pow((A + B), 2) - K / C / D;
+    return(Y);
+}
+double v10(double x, double k, double z, double C, double D)
+{
+    double A, B, Y;
+    A = log(x) - k;
+    B = sqrt(z);
+    Y = pow(D, 2) + (pow(C, 2) / 0, 75 / A) + B;
+    return(Y);
+}
+int main()
+{
+    int varik;
+    cout << "Choose a variant: ";
+    cin >> varik;
+    double x,D,p,K,C,n,y,z,m,h;
+    switch (varik)
+    {
+    case 1:
+
+        cin >> x >> D;
+        cout << v1(x, D);
+        break;
+    case 2:
+        cin >> x >> p >> K>>C>>D;
+        cout << v2(C, D, K, p, x);
+        break;
+    case 3:
+        cin >> x >> p >> n >> K >> D;
+        cout << v3(x, p, n, K, D);
+        break;
+    case 4:
+        cin >> x >> K >> C >> y >> z>>D;
+        cout << v4(x, y, z, K, C, D);
+        break;
+    case 5:
+        cin >> n >> m >> x >> K;
+        cout << v5(n, m, x, K);
+        break;
+    case 6:
+        cin >> x >> y >> C >> K;
+        cout << v6(x, y, C, K);
+        break;
+    case 7:
+        cin >> x >> p >> h >> K >> C >> D;
+        cout << v7(x, p, h, K, C, D);
+        break;
+    case 8:
+        cin >> x >> D >> C >> K;
+        cout << v8(x, D, C, K);
+        break;
+    case 9:
+        cin >> x >> p >> C >> K >> D >> z;
+        cout << v9(x, z, p, K, C, D);
+        break;
+    case 10:
+        cin >> x >> K >> z >> C >> D;
+        cout << v10(x, K, z, C, D);
+        break;
+    }
+    return(0);
+}
